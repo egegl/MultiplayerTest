@@ -64,7 +64,6 @@ public class ChatManager : MonoBehaviourPunCallbacks
                 BuildChat();
                 _delay = Time.time + 0.25f;
             }
-            
         }
         else if (_messages.Count > 0)
         {
@@ -72,9 +71,14 @@ public class ChatManager : MonoBehaviourPunCallbacks
             chatContent.text = "";
         }
 
-        if (Input.GetKey(KeyCode.Return))
+        if (Input.GetKey(KeyCode.Return) && chatInput.text != "")
         {
             SendChat();
+            chatInput.DeactivateInputField();
+        }
+        else if(Input.GetKey(KeyCode.Return) && chatInput.text == "")
+        {
+            chatInput.Select();
         }
     }
 }

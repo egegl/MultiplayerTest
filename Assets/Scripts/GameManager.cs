@@ -54,11 +54,6 @@ public class GameManager : MonoBehaviourPun
         {
             tabPanel.SetActive(false);
         }
-
-        if (Input.GetKey(KeyCode.Z))
-        {
-            return;
-        }
     }
 
     public void SpawnPlayer()
