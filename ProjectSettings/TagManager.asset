@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Info
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Collidable
+  - Enemy
+  - PostProcessing
+  - Player
+  - Bullet
+  - IgnoreBullet
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 1882099593
+    locked: 0
+  - name: BelowBelow
+    uniqueID: 2402279041
+    locked: 0
+  - name: BelowDefault
+    uniqueID: 1591927919
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: AboveDefault
+    uniqueID: 2444356221
+    locked: 0
+  - name: AboveAbove
+    uniqueID: 2419339535
+    locked: 0
