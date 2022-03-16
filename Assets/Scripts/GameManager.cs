@@ -9,10 +9,14 @@ using System.Linq;
 public class GameManager : MonoBehaviourPun
 {
     public Text ping;
+    public Text fps;
     public GameObject tabPanel;
     public GameObject playerPrefab;
     public Transform[] spawnPoints;
     public static GameManager instance;
+
+    private int frameCount;
+    private float time;
 
     void Awake()
     {
@@ -33,6 +37,14 @@ public class GameManager : MonoBehaviourPun
     void Update()
     {
         ping.text = "Ping: " + PhotonNetwork.GetPing().ToString() + "ms";
+
+        time += Time.deltaTime;
+        frameCount++;
+        if (time >= 1)
+        {
+            int frameRate = Mathf.RoundToInt(frameCount / time);
+            fps.text = frameRate.ToString() + " fps";
+        }
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
