@@ -84,7 +84,7 @@ public class Shoot : MonoBehaviourPunCallbacks
     [PunRPC]
     void RPC_SendBullet()
     {
-        Instantiate(bulletPrefab, _barrel.position, _barrel.rotation);
+        PhotonNetwork.Instantiate("Bullet", _barrel.position, _barrel.rotation);
     }
 
     public void Sync()

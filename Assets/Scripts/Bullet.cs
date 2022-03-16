@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 /* 
 THIS SCRIPT IS FOR THE BULLET PREFAB TO GO FORWARD WHEN INSTANTIATED AND THEN DESTROY ON IMPACT
@@ -31,16 +32,7 @@ public class Bullet : MonoBehaviourPun
         else if (collision.CompareTag("Player"))
         {
             PlayerHealth _playerHealth = collision.GetComponent<PlayerHealth>();
-            _playerHealth.TakeDamage(damage, Color.yellow);
-
-            if (_playerHealth._currHP <= 0)
-            {
-                // Create variable equal to stored hashtable variable, increment, set
-                int totalKills = (int)PhotonNetwork.LocalPlayer.CustomProperties["Kills"];
-                totalKills++;
-                ExitGames.Client.Photon.Hashtable setPlayerKills = new ExitGames.Client.Photon.Hashtable() { { "Kills", totalKills } };
-                PhotonNetwork.LocalPlayer.SetCustomProperties(setPlayerKills);
-            }
+            _playerHealth.TakeDamage(damage, Color.yellow, photonView.Owner);
         }
         DestroyBullet();
         // AudioManager.instance.Play("projectilehit"); 

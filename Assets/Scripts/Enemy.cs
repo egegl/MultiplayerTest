@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
         {
             if (curTime <= 0)
             {
-                _playerHealth.TakeDamage(attackDamage, new Color(255, 125, 50));
+                _playerHealth.TakeDamage(attackDamage, new Color(255, 125, 50), null);
                 curTime = 0.5f;
             }
             else

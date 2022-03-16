@@ -14,9 +14,7 @@ public class Scoreboard : MonoBehaviourPunCallbacks
     {
         foreach(Player player in PhotonNetwork.CurrentRoom.Players.Values)
         {
-            int a = 1;
-            text.text = text.text + a + ")  " + player.NickName.ToString() + "  :  " + player.CustomProperties["Kills"] + " K / " + player.CustomProperties["Deaths"] + " D" + "\n";
-            a++;
+            text.text = text.text + player.NickName.ToString() + "  :  " + player.CustomProperties["Kills"] + " K / " + player.CustomProperties["Deaths"] + " D" + "\n";
         }
     }
 

@@ -2766,6 +2766,8 @@ MonoBehaviour:
     height: 1080
   - width: 1280
     height: 720
+  - width: 1024
+    height: 576
   - width: 512
     height: 288
 --- !u!1 &1234718739

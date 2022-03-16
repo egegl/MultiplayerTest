@@ -35,7 +35,7 @@ public class PlayerHealth : MonoBehaviourPun
         _popupTM = damagePopup.GetComponent<TextMesh>();
     }
 
-    public void TakeDamage(int damage, Color color)
+    public void TakeDamage(int damage, Color color, Player damager)
     {
         if (_isMine)
         {
@@ -46,7 +46,7 @@ public class PlayerHealth : MonoBehaviourPun
             HealthBar.Instance.SetHealth(_currHP);
             if (_currHP <= 0)
             {
-                photonView.RPC("RPC_Die", RpcTarget.All);
+                photonView.RPC("RPC_Die", RpcTarget.All, damager);
                 GameManager.instance.SpawnPlayer();
                 return;
             }
@@ -62,20 +62,25 @@ public class PlayerHealth : MonoBehaviourPun
     }
 
     [PunRPC]
-    void RPC_Die()
+    void RPC_Die(Player killer)
     {
         // INSTANTIATE PARTICLE SYSTEM
         Instantiate(hurtPS, transform.position, transform.rotation);
         // PLAY DEATH SOUND
         // AudioManager.instance.Play("playerdeath");
 
-        // Create variable equal to stored hashtable variable, increment, set
-        int totalDeaths = (int)PhotonNetwork.LocalPlayer.CustomProperties["Deaths"];
+        // Make killer's kills equal to stored hashtable variable, increment, set
+        int totalKills = (int)killer.CustomProperties["Kills"];
+        totalKills++;
+        ExitGames.Client.Photon.Hashtable setPlayerKills = new ExitGames.Client.Photon.Hashtable() { { "Kills", totalKills } };
+        killer.SetCustomProperties(setPlayerKills);
+
+        // Make client's deaths equal to stored hashtable variable, increment, set
+        int totalDeaths = (int)photonView.Owner.CustomProperties["Deaths"];
         totalDeaths++;
         ExitGames.Client.Photon.Hashtable setPlayerDeaths = new ExitGames.Client.Photon.Hashtable() { { "Deaths", totalDeaths } };
-        PhotonNetwork.LocalPlayer.SetCustomProperties(setPlayerDeaths);
+        photonView.Owner.SetCustomProperties(setPlayerDeaths);
 
-        // DESTROY PLAYER
         gameObject.SetActive(false);
     }
 
