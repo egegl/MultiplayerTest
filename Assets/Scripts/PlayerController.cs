@@ -61,8 +61,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     private void Movement()
     {
-        if (GameManager.instance.cantMove) return;
-
         Vector3 diff = (_cam.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
         float rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);

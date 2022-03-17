@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviourPun
     public GameObject playerPrefab;
     public Transform[] spawnPoints;
     public static GameManager instance;
-    [HideInInspector] public bool cantMove = false;
 
     private int frameCount;
     private float time;
@@ -75,7 +74,7 @@ public class GameManager : MonoBehaviourPun
     private IEnumerator ReactivatePlayer(GameObject player, Transform spawnPoint)
     {
         player.transform.position = spawnPoint.position;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(3.7f);
         player.SetActive(true);
     }
 

@@ -16,12 +16,21 @@ public class ChatManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        photonView.RPC("RPC_AddMessage", RpcTarget.All, newPlayer.NickName + " joined");
+        StartCoroutine(PlayerJoinedRoom(newPlayer));
     }
 
     public override void OnPlayerLeftRoom(Player player)
     {
         photonView.RPC("RPC_AddMessage", RpcTarget.All, player.NickName + " left");
+    }
+
+    private IEnumerator PlayerJoinedRoom(Player newPlayer)
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (newPlayer.NickName != "")
+        {
+            photonView.RPC("RPC_AddMessage", RpcTarget.All, newPlayer.NickName + " joined");
+        }
     }
 
     [PunRPC]
@@ -103,12 +112,10 @@ public class ChatManager : MonoBehaviourPunCallbacks
     private void SelectChatInput()
     {
         chatInput.Select();
-        GameManager.instance.cantMove = true;
     }
 
     private void DeselectChatInput()
     {
         chatInput.DeactivateInputField();
-        GameManager.instance.cantMove = false;
     }
 }

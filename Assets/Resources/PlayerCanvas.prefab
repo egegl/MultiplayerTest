@@ -172,8 +172,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 4.4
-  m_fontSizeBase: 4.4
+  m_fontSize: 4.2
+  m_fontSizeBase: 4.2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -240,7 +240,6 @@ GameObject:
   - component: {fileID: 2175723878277851468}
   - component: {fileID: 6029718060922474383}
   - component: {fileID: 4495287808846559928}
-  - component: {fileID: 8134185106817883151}
   m_Layer: 5
   m_Name: DeathPanel
   m_TagString: Untagged
@@ -307,20 +306,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8134185106817883151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771492481926383691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffc398cf76e6d458caf303b5fceea504, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Countdown: 3
-  Text: {fileID: 3594538688243523065}
 --- !u!1 &781893429613595530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,6 +1172,7 @@ GameObject:
   - component: {fileID: 7880171541943379647}
   - component: {fileID: 4627232253908953617}
   - component: {fileID: 3594538688243523065}
+  - component: {fileID: 578744288353109601}
   m_Layer: 5
   m_Name: Countdown Text
   m_TagString: Untagged
@@ -1255,6 +1241,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &578744288353109601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5663029577332087979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd009bb44660e3246aed1a29ee4375b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countdownTime: 3
+  timerText: {fileID: 3594538688243523065}
 --- !u!1 &5923285424712614614
 GameObject:
   m_ObjectHideFlags: 0

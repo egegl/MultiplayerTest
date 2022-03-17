@@ -24,11 +24,16 @@ public class Bullet : MonoBehaviourPun
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && collision.gameObject.GetPhotonView().Owner.ActorNumber != _creator)
+        if (!collision.CompareTag("Player"))
+        {
+            DestroyBullet();
+        }
+
+        else if (collision.CompareTag("Player") && collision.gameObject.GetPhotonView().Owner.ActorNumber != _creator)
         {
             collision.GetComponent<PlayerHealth>().TakeDamage(18, _creator);
+            DestroyBullet();
         }
-        DestroyBullet();
         // AudioManager.instance.Play("projectilehit"); 
     }
 
