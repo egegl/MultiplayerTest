@@ -46,6 +46,8 @@ MonoBehaviour:
   - RPC_DamagePopup
   - RPC_Die
   - RPC_AddMessage
+  - DeathGUIClose
+  - DeathGUIOpen
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

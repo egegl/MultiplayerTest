@@ -9,17 +9,29 @@ public class Scoreboard : MonoBehaviourPunCallbacks
 {
     public TextMeshProUGUI text;
     [HideInInspector] public Dictionary<int, Player> players = new Dictionary<int, Player>();
+    public static Scoreboard Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     public override void OnEnable()
     {
-        foreach(Player player in PhotonNetwork.CurrentRoom.Players.Values)
-        {
-            text.text = text.text + player.NickName.ToString() + "  :  " + player.CustomProperties["Kills"] + " K / " + player.CustomProperties["Deaths"] + " D" + "\n";
-        }
+        UpdateScores();
     }
 
     public override void OnDisable()
     {
         text.text = "";
+    }
+
+    public void UpdateScores()
+    {
+        text.text = "";
+        foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
+        {
+            text.text = text.text + player.NickName.ToString() + "  :  " + player.CustomProperties["Kills"] + " K / " + player.CustomProperties["Deaths"] + " D" + "\n";
+        }
     }
 }

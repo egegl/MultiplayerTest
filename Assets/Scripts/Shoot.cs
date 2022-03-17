@@ -12,7 +12,6 @@ public class Shoot : MonoBehaviourPunCallbacks
     public GameObject bulletPrefab;
     private Transform _barrel;
     private Animator _anim;
-    private Bullet _bullet;
     private bool attackCD = true;
     private bool _isMine;
 
@@ -32,8 +31,6 @@ public class Shoot : MonoBehaviourPunCallbacks
     {
         _anim = GetComponent<Animator>();
         _barrel = transform.Find("Barrel");
-        _bullet = bulletPrefab.GetComponent<Bullet>();
-        Sync();
     }
     void Update()
     {
@@ -69,29 +66,22 @@ public class Shoot : MonoBehaviourPunCallbacks
         // PLAY WEAPON SHOT SOUND (NOT IMPLEMENTED YET SO COMMENTED OUT)
         // AudioManager.instance.Play("weapon.attackSound");
         _anim.SetTrigger("Shoot");
-        photonView.RPC("RPC_SendBullet", RpcTarget.All);
+        photonView.RPC("RPC_SendBullet", RpcTarget.All, photonView.OwnerActorNr);
         StartCoroutine(AttackCooldown());
     }
     private IEnumerator Spray()
     {
         attackCD = false;
         _anim.SetTrigger("Shoot");
-        photonView.RPC("RPC_SendBullet", RpcTarget.All);
+        photonView.RPC("RPC_SendBullet", RpcTarget.All, photonView.OwnerActorNr);
         yield return new WaitForSeconds(weapon.fireRate);
         attackCD = true;
     }
 
     [PunRPC]
-    void RPC_SendBullet()
+    private void RPC_SendBullet(int senderNumber)
     {
-        PhotonNetwork.Instantiate("Bullet", _barrel.position, _barrel.rotation);
-    }
-
-    public void Sync()
-    {
-        _anim.SetFloat("animSpeed", 0.5f/weapon.fireRate);
-        transform.localScale = new Vector3(weapon.width, weapon.height, 1);
-        _bullet.speed = weapon.bulletSpeed;
-        _bullet.damage = weapon.bulletDamage;
+        Instantiate(bulletPrefab, _barrel.position, _barrel.rotation);
+        bulletPrefab.GetComponent<Bullet>()._creator = senderNumber;
     }
 }

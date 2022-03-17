@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 8926921770295579765}
   - component: {fileID: 8926921770295579769}
   - component: {fileID: 8521786632926626891}
-  - component: {fileID: -1612651767315862655}
-  - component: {fileID: 6139097317050925845}
   - component: {fileID: 6438061597411047066}
   m_Layer: 10
   m_Name: Bullet
@@ -121,9 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d6a6fbe0cba9b4d9cf4eeefd26f18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 28
-  damage: 12
   impactPS: {fileID: 900744269628566678, guid: e44bd2e011fee4e45bb9a71badef9234, type: 3}
+  _creator: 0
 --- !u!114 &8521786632926626891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,45 +162,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &-1612651767315862655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8926921770295579762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents:
-  - {fileID: 6139097317050925845}
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &6139097317050925845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8926921770295579762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!60 &6438061597411047066
 PolygonCollider2D:
   m_ObjectHideFlags: 0

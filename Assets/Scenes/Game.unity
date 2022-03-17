@@ -7494,9 +7494,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8457203512194321256}
     - target: {fileID: 7823929172148966089, guid: ec59d013b3be86a48b46fca02a7bf486, type: 3}
+      propertyPath: hpPanel
+      value: 
+      objectReference: {fileID: 8457203512194321260}
+    - target: {fileID: 7823929172148966089, guid: ec59d013b3be86a48b46fca02a7bf486, type: 3}
       propertyPath: tabPanel
       value: 
       objectReference: {fileID: 8457203512194321257}
+    - target: {fileID: 7823929172148966089, guid: ec59d013b3be86a48b46fca02a7bf486, type: 3}
+      propertyPath: deathPanel
+      value: 
+      objectReference: {fileID: 8457203512194321259}
+    - target: {fileID: 7823929172148966089, guid: ec59d013b3be86a48b46fca02a7bf486, type: 3}
+      propertyPath: deathScreen
+      value: 
+      objectReference: {fileID: 8457203512194321259}
     - target: {fileID: 7823929172148966089, guid: ec59d013b3be86a48b46fca02a7bf486, type: 3}
       propertyPath: playerPrefab
       value: 
@@ -7613,6 +7625,10 @@ PrefabInstance:
     - target: {fileID: 785103337619753838, guid: e1ecec9c40f13d348861bbf3df41ca49, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -114
+      objectReference: {fileID: 0}
+    - target: {fileID: 785103337619753839, guid: e1ecec9c40f13d348861bbf3df41ca49, type: 3}
+      propertyPath: m_Name
+      value: HealthPanel
       objectReference: {fileID: 0}
     - target: {fileID: 1772468648561227061, guid: e1ecec9c40f13d348861bbf3df41ca49, type: 3}
       propertyPath: sceneViewId
@@ -7751,6 +7767,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8457203512194321259 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 771492481926383691, guid: e1ecec9c40f13d348861bbf3df41ca49, type: 3}
+  m_PrefabInstance: {fileID: 8457203512194321255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8457203512194321260 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 785103337619753839, guid: e1ecec9c40f13d348861bbf3df41ca49, type: 3}
+  m_PrefabInstance: {fileID: 8457203512194321255}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9106874444649486376
 PrefabInstance:
   m_ObjectHideFlags: 0

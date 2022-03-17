@@ -8,12 +8,15 @@ using System.Linq;
 
 public class GameManager : MonoBehaviourPun
 {
+    public GameObject deathPanel;
+    public GameObject hpPanel;
     public Text ping;
     public Text fps;
     public GameObject tabPanel;
     public GameObject playerPrefab;
     public Transform[] spawnPoints;
     public static GameManager instance;
+    [HideInInspector] public bool cantMove = false;
 
     private int frameCount;
     private float time;
@@ -60,5 +63,31 @@ public class GameManager : MonoBehaviourPun
     {
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
         PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, Quaternion.identity);
+    }
+
+    // FIX
+    public void PlayerDied(GameObject player)
+    {
+        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        StartCoroutine(ReactivatePlayer(player, spawnPoint));
+    }
+
+    private IEnumerator ReactivatePlayer(GameObject player, Transform spawnPoint)
+    {
+        player.transform.position = spawnPoint.position;
+        yield return new WaitForSeconds(3f);
+        player.SetActive(true);
+    }
+
+    public void DeathGUIOpen()
+    {
+        hpPanel.SetActive(false);
+        deathPanel.SetActive(true);
+    }
+
+    public void DeathGUIClose()
+    {
+        hpPanel.SetActive(true);
+        deathPanel.SetActive(false);
     }
 }

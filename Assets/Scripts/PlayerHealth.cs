@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using System;
 
-public class PlayerHealth : MonoBehaviourPun
+public class PlayerHealth : MonoBehaviourPunCallbacks
 {
     public ParticleSystem hurtPS;
     public int maxHP;
@@ -29,25 +30,38 @@ public class PlayerHealth : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        _currHP = maxHP;
         _anim = GetComponent<Animator>();
-        HealthBar.Instance.SetMaxHealth(_currHP);
         _popupTM = damagePopup.GetComponent<TextMesh>();
     }
 
-    public void TakeDamage(int damage, Color color, Player damager)
+    public override void OnEnable()
+    {
+        if (_isMine)
+        {
+            _currHP = maxHP;
+            HealthBar.Instance.SetMaxHealth(_currHP);
+            GameManager.instance.DeathGUIClose();
+        }
+    }
+
+    public void TakeDamage(int damage, int damagerID)
     {
         if (_isMine)
         {
             _currHP -= damage;
-            _popupTM.color = color;
-            _popupTM.text = damage.ToString();
-            photonView.RPC("RPC_DamagePopup", RpcTarget.All);
+            photonView.RPC("RPC_DamagePopup", RpcTarget.All, damage);
             HealthBar.Instance.SetHealth(_currHP);
             if (_currHP <= 0)
             {
+                Player damager = null;
+                foreach (Player player in PhotonNetwork.PlayerList)
+                {
+                    if (player.ActorNumber == damagerID)
+                    {
+                        damager = player;
+                    }
+                }
                 photonView.RPC("RPC_Die", RpcTarget.All, damager);
-                GameManager.instance.SpawnPlayer();
                 return;
             }
             CameraShake.Instance.Shake(1.5f, .2f);
@@ -56,9 +70,10 @@ public class PlayerHealth : MonoBehaviourPun
     }
 
     [PunRPC]
-    void RPC_DamagePopup()
+    void RPC_DamagePopup(int damage)
     {
-        Instantiate(damagePopup, transform.position, Quaternion.Euler(0, 0, Random.Range(-16, 16)));
+        _popupTM.text = damage.ToString();
+        Instantiate(damagePopup, transform.position, Quaternion.Euler(0, 0, UnityEngine.Random.Range(-16, 16)));
     }
 
     [PunRPC]
@@ -80,6 +95,13 @@ public class PlayerHealth : MonoBehaviourPun
         totalDeaths++;
         ExitGames.Client.Photon.Hashtable setPlayerDeaths = new ExitGames.Client.Photon.Hashtable() { { "Deaths", totalDeaths } };
         photonView.Owner.SetCustomProperties(setPlayerDeaths);
+
+        GameManager.instance.PlayerDied(gameObject);
+
+        if(_isMine)
+        {
+            GameManager.instance.DeathGUIOpen();
+        }
 
         gameObject.SetActive(false);
     }

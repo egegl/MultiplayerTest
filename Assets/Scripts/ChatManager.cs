@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using Photon.Pun;
 using System.Text.RegularExpressions;
+using Photon.Realtime;
 
 public class ChatManager : MonoBehaviourPunCallbacks
 {
@@ -13,6 +14,15 @@ public class ChatManager : MonoBehaviourPunCallbacks
     public InputField chatInput;
     public TextMeshProUGUI chatContent;
 
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        photonView.RPC("RPC_AddMessage", RpcTarget.All, newPlayer.NickName + " joined");
+    }
+
+    public override void OnPlayerLeftRoom(Player player)
+    {
+        photonView.RPC("RPC_AddMessage", RpcTarget.All, player.NickName + " left");
+    }
 
     [PunRPC]
     void RPC_AddMessage(string msg)
@@ -20,7 +30,7 @@ public class ChatManager : MonoBehaviourPunCallbacks
         _messages.Add(msg);
     }
 
-    public void SendChat(string msg)
+    public void SendChat2(string msg)
     {
         string NewMessage = PhotonNetwork.NickName + ": " + msg;
         photonView.RPC("RPC_AddMessage", RpcTarget.All, NewMessage);
@@ -35,7 +45,7 @@ public class ChatManager : MonoBehaviourPunCallbacks
             chatInput.text = "";
             return;
         }
-        SendChat(chatInput.text);
+        SendChat2(chatInput.text);
         chatInput.text = "";
     }
     
@@ -71,14 +81,34 @@ public class ChatManager : MonoBehaviourPunCallbacks
             chatContent.text = "";
         }
 
-        if (Input.GetKey(KeyCode.Return) && chatInput.text != "")
+        if (Input.GetKeyDown(KeyCode.Return) && chatInput.text != "")
         {
             SendChat();
-            chatInput.DeactivateInputField();
+            DeselectChatInput();
+            
         }
-        else if(Input.GetKey(KeyCode.Return) && chatInput.text == "")
+        else if(Input.GetKeyDown(KeyCode.Return) && chatInput.text == "")
         {
-            chatInput.Select();
+            if (!chatInput.isFocused)
+            {
+                SelectChatInput();
+            }
+            else
+            {
+                DeselectChatInput();
+            }
         }
+    }
+
+    private void SelectChatInput()
+    {
+        chatInput.Select();
+        GameManager.instance.cantMove = true;
+    }
+
+    private void DeselectChatInput()
+    {
+        chatInput.DeactivateInputField();
+        GameManager.instance.cantMove = false;
     }
 }

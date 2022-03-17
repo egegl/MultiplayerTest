@@ -91,6 +91,6 @@ public class PlayerInventory : MonoBehaviourPunCallbacks
     public void SwitchWeapon(int i)
     {
         _shoot.weapon = Resources.Load<Weapon>("Scriptable Objects/" + _weapons[i]);
-        _shoot.Sync();
+        // _shoot.Sync();
     }
 }

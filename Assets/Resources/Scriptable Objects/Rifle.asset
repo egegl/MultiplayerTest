@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e4c92bfdcf670e4d81e1109d59c15cb, type: 3}
   m_Name: Rifle
   m_EditorClassIdentifier: 
-  bulletSpeed: 26
+  bulletSpeed: 40
   bulletDamage: 21
-  critChance: 0.2
   fireRate: 0.3
   fullAuto: 1
-  shotgun: 0
+  burst: 0
   width: 2
   height: 2

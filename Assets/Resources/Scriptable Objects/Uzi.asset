@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e4c92bfdcf670e4d81e1109d59c15cb, type: 3}
   m_Name: Uzi
   m_EditorClassIdentifier: 
-  bulletSpeed: 28
-  bulletDamage: 12
-  fireRate: 0.15
+  bulletSpeed: 40
+  bulletDamage: 18
+  fireRate: 0.3
   fullAuto: 1
   burst: 0
   width: 2
-  height: 1.5
+  height: 2
