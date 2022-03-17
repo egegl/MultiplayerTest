@@ -112,10 +112,10 @@ RectTransform:
   m_Father: {fileID: 4790103213665428997}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.65}
-  m_SizeDelta: {x: 0, y: 55}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.49999, y: 30}
+  m_SizeDelta: {x: 94, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5776276509399132748
 CanvasRenderer:
@@ -172,8 +172,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 4.2
-  m_fontSizeBase: 4.2
+  m_fontSize: 4
+  m_fontSizeBase: 4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 4
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 0.15355682}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1058,7 +1058,7 @@ GameObject:
   - component: {fileID: 4790103213665428995}
   - component: {fileID: 4790103213665428994}
   - component: {fileID: 2447509102664366416}
-  - component: {fileID: 3286848655819233789}
+  - component: {fileID: 5362116397544465523}
   m_Layer: 5
   m_Name: ChatPanel
   m_TagString: Untagged
@@ -1084,8 +1084,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -115, y: -36.175}
-  m_SizeDelta: {x: -229.99997, y: -118.35}
+  m_AnchoredPosition: {x: -112.50001, y: -36}
+  m_SizeDelta: {x: -224.99998, y: -117.99999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4790103213665428995
 CanvasRenderer:
@@ -1139,7 +1139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chatInput: {fileID: 4302452893415709442}
   chatContent: {fileID: 1746533582166990641}
---- !u!114 &3286848655819233789
+--- !u!114 &5362116397544465523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1253,7 +1253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd009bb44660e3246aed1a29ee4375b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownTime: 3
   timerText: {fileID: 3594538688243523065}
 --- !u!1 &5923285424712614614
 GameObject:

@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
     private Vector2 _movement;
     public float dashSpeed, dashCooldown;
     private bool dashCD;
-    private TrailRenderer _trail;
 
     void Awake()
     {
@@ -38,7 +37,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
     }
     void Start()
     {
-        _trail = GetComponent<TrailRenderer>();
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _cam = Camera.main;
@@ -55,6 +53,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 Destroy(gameObject);
                 PhotonNetwork.LeaveRoom();
                 SceneLoader.instance.Load("Lobby");
+                AudioManager.instance.Stop("gametheme");
+                AudioManager.instance.Play("menutheme");
             }
         } 
     }
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         _movement.y = Input.GetAxisRaw("Vertical");
         _anim.SetFloat("MoveSpeed", _movement.sqrMagnitude);
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift) && !dashCD)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !dashCD)
         {
             StartCoroutine(Dash());
         }
@@ -85,13 +85,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     private IEnumerator Dash()
     {
-        _trail.enabled = true;
-        // AudioManager.instance.Play("dash");
+        _anim.SetTrigger("Dash");
+        AudioManager.instance.Play("dash");
         StartCoroutine(DashCooldown());
-        float currSpeed = moveSpeed;
         moveSpeed *= dashSpeed;
-        yield return new WaitForSeconds(0.1f);
-        moveSpeed = currSpeed;
-        _trail.enabled = false;
+        yield return new WaitForSeconds(0.12f);
+        moveSpeed = 7.5f;
     }   
 }

@@ -31,6 +31,7 @@ public class Shoot : MonoBehaviourPunCallbacks
     {
         _anim = GetComponent<Animator>();
         _barrel = transform.Find("Barrel");
+        Sync();
     }
     void Update()
     {
@@ -63,8 +64,6 @@ public class Shoot : MonoBehaviourPunCallbacks
 
     private void AttackOnce()
     {
-        // PLAY WEAPON SHOT SOUND (NOT IMPLEMENTED YET SO COMMENTED OUT)
-        // AudioManager.instance.Play("weapon.attackSound");
         _anim.SetTrigger("Shoot");
         photonView.RPC("RPC_SendBullet", RpcTarget.All, photonView.OwnerActorNr);
         StartCoroutine(AttackCooldown());
@@ -81,7 +80,13 @@ public class Shoot : MonoBehaviourPunCallbacks
     [PunRPC]
     private void RPC_SendBullet(int senderNumber)
     {
+        AudioManager.instance.Play("gunshot");
         Instantiate(bulletPrefab, _barrel.position, _barrel.rotation);
         bulletPrefab.GetComponent<Bullet>()._creator = senderNumber;
+    }
+    public void Sync()
+    {
+        _anim.SetFloat("animSpeed", 0.5f / weapon.fireRate);
+        // transform.localScale = new Vector3(weapon.width, weapon.height, 1);
     }
 }

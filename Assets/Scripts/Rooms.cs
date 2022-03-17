@@ -10,6 +10,11 @@ public class Rooms : MonoBehaviourPunCallbacks
     public TMP_InputField joinRoomInput;
     public TMP_InputField usernameInput;
 
+    private void Start()
+    {
+        usernameInput.characterLimit = 10;
+    }
+
     public void CreateRoom()
     {
         CheckConnection();

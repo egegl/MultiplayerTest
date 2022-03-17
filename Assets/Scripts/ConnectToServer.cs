@@ -9,6 +9,7 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
+        AudioManager.instance.Play("menutheme");
     }
 
     public override void OnConnectedToMaster()

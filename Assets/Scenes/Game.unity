@@ -7634,7 +7634,23 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2108752120734958776, guid: e1ecec9c40f13d348861bbf3df41ca49, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2108752120734958776, guid: e1ecec9c40f13d348861bbf3df41ca49, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2950980400657863714, guid: e1ecec9c40f13d348861bbf3df41ca49, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3286848655819233789, guid: e1ecec9c40f13d348861bbf3df41ca49, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5362116397544465523, guid: e1ecec9c40f13d348861bbf3df41ca49, type: 3}
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}

@@ -19,26 +19,26 @@ public class Bullet : MonoBehaviourPun
     {
         _rb = GetComponent<Rigidbody2D>();
         // MOVING THE BULLET'S RIGIDBODY2D FORWARD ON START
-        _rb.velocity = transform.right * 35;
+        _rb.velocity = transform.right * 36;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Player"))
         {
-            DestroyBullet();
+            BulletHit();
         }
 
         else if (collision.CompareTag("Player") && collision.gameObject.GetPhotonView().Owner.ActorNumber != _creator)
         {
             collision.GetComponent<PlayerHealth>().TakeDamage(18, _creator);
-            DestroyBullet();
+            BulletHit();
         }
-        // AudioManager.instance.Play("projectilehit"); 
     }
 
-    private void DestroyBullet()
+    private void BulletHit()
     {
+        AudioManager.instance.Play("hit");
         Instantiate(impactPS, transform.position, transform.rotation);
         Destroy(gameObject);
     }

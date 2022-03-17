@@ -79,10 +79,8 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
     [PunRPC]
     void RPC_Die(Player killer)
     {
-        // INSTANTIATE PARTICLE SYSTEM
         Instantiate(hurtPS, transform.position, transform.rotation);
-        // PLAY DEATH SOUND
-        // AudioManager.instance.Play("playerdeath");
+        AudioManager.instance.Play("death");
 
         // Make killer's kills equal to stored hashtable variable, increment, set
         int totalKills = (int)killer.CustomProperties["Kills"];

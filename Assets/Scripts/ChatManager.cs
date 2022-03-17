@@ -14,6 +14,11 @@ public class ChatManager : MonoBehaviourPunCallbacks
     public InputField chatInput;
     public TextMeshProUGUI chatContent;
 
+    private void Start()
+    {
+        chatInput.characterLimit = 80;
+    }
+
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         StartCoroutine(PlayerJoinedRoom(newPlayer));
@@ -37,6 +42,7 @@ public class ChatManager : MonoBehaviourPunCallbacks
     void RPC_AddMessage(string msg)
     {
         _messages.Add(msg);
+        AudioManager.instance.Play("notification");
     }
 
     public void SendChat2(string msg)

@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviourPun
 
     void Start()
     {
+        AudioManager.instance.Stop("menutheme");
+        AudioManager.instance.Play("gametheme");
         SpawnPlayer();
 
         ExitGames.Client.Photon.Hashtable setPlayerKills = new ExitGames.Client.Photon.Hashtable() {{ "Kills", 0 }};

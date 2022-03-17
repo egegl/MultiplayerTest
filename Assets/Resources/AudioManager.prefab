@@ -43,4 +43,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b106f638998d554781ece2b1bea05b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - clip: {fileID: 8300000, guid: dc77bf8d06ffa6a448bb92b5c9545d71, type: 3}
+    name: menutheme
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 709dc5c72e94b614082b12428eeca7b0, type: 3}
+    name: gametheme
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 2eb09d6d304612e4fa89da5845e2faa9, type: 3}
+    name: click
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 06a5de49a2a3ff14d928332f3215fed2, type: 3}
+    name: dash
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: d97b0ae619266ae40bdfa4e190160616, type: 3}
+    name: hit
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 974761958d6507a43ba903e7724e4c29, type: 3}
+    name: death
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: ddad162e266f1e346a54845f02b27c33, type: 3}
+    name: gunshot
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 7dcd0330e1cd7a84dbd63258d7ccbf0f, type: 3}
+    name: notification
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
