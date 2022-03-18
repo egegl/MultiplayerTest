@@ -88,19 +88,19 @@ MonoBehaviour:
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 7dcd0330e1cd7a84dbd63258d7ccbf0f, type: 3}
     name: notification
-    volume: 0.4
+    volume: 0.3
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: d05c70ffbcb8cd347969f42e6ea18ef8, type: 3}
     name: fart1
-    volume: 1
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 97d17b9341360bf4f9dff2df39033798, type: 3}
     name: fart2
-    volume: 1
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
