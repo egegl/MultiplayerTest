@@ -51,6 +51,7 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
             _currHP -= damage;
             photonView.RPC("RPC_DamagePopup", RpcTarget.All, damage);
             HealthBar.Instance.SetHealth(_currHP);
+            StartCoroutine(HurtVisuals());
             if (_currHP <= 0)
             {
                 Player damager = null;
@@ -64,8 +65,6 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
                 photonView.RPC("RPC_Die", RpcTarget.All, damager);
                 return;
             }
-            CameraShake.Instance.Shake(1.5f, .2f);
-            _anim.SetTrigger("Hurt");
         }
     }
 
@@ -104,4 +103,11 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
         gameObject.SetActive(false);
     }
 
+    private IEnumerator HurtVisuals()
+    {
+        _anim.SetTrigger("Hurt");
+        CameraShake.Instance.Shake(2f, .2f);
+        yield return new WaitForSeconds(0.2f);
+        _anim.SetTrigger("Normal");
+    }
 }

@@ -563,6 +563,9 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 2
     Name: Dash
+  - Type: 9
+    SynchronizeType: 2
+    Name: Normal
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0

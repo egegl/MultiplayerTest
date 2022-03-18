@@ -32,13 +32,13 @@ public class Bullet : MonoBehaviourPun
         else if (collision.CompareTag("Player") && collision.gameObject.GetPhotonView().Owner.ActorNumber != _creator)
         {
             collision.GetComponent<PlayerHealth>().TakeDamage(18, _creator);
+            AudioManager.instance.Play("hit");
             BulletHit();
         }
     }
 
     private void BulletHit()
     {
-        AudioManager.instance.Play("hit");
         Instantiate(impactPS, transform.position, transform.rotation);
         Destroy(gameObject);
     }
