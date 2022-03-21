@@ -69,15 +69,16 @@ public class GameManager : MonoBehaviourPun
     // FIX
     public void PlayerDied(GameObject player)
     {
-        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        StartCoroutine(ReactivatePlayer(player, spawnPoint));
+        PhotonNetwork.Destroy(player);
+        DeathGUIOpen();
+        StartCoroutine(ReactivatePlayer(player));
     }
 
-    private IEnumerator ReactivatePlayer(GameObject player, Transform spawnPoint)
+    private IEnumerator ReactivatePlayer(GameObject player)
     {
-        player.transform.position = spawnPoint.position;
         yield return new WaitForSeconds(3.7f);
-        player.SetActive(true);
+        SpawnPlayer();
+        DeathGUIClose();
     }
 
     public void DeathGUIOpen()

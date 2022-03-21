@@ -43,5 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 335b0c4202e99344b8e3e2bf9ed4a7ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 781418857124489787, guid: 27879b7ecf9a03c4c83b7ebdbee1a1e1, type: 3}
+  deathPanel: {fileID: 0}
+  hpPanel: {fileID: 0}
+  ping: {fileID: 0}
+  fps: {fileID: 0}
+  tabPanel: {fileID: 0}
+  playerPrefab: {fileID: 922873826809884547, guid: 981d5dfd48c2b4b428a0e1d65ea6180d, type: 3}
   spawnPoints: []

@@ -7510,10 +7510,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8457203512194321259}
     - target: {fileID: 7823929172148966089, guid: ec59d013b3be86a48b46fca02a7bf486, type: 3}
-      propertyPath: playerPrefab
-      value: 
-      objectReference: {fileID: 781418857124489787, guid: 27879b7ecf9a03c4c83b7ebdbee1a1e1, type: 3}
-    - target: {fileID: 7823929172148966089, guid: ec59d013b3be86a48b46fca02a7bf486, type: 3}
       propertyPath: spawnPoints.Array.size
       value: 11
       objectReference: {fileID: 0}

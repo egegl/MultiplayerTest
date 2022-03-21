@@ -10,10 +10,11 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
     public ParticleSystem hurtPS;
     public int maxHP;
     [HideInInspector] public int _currHP;
-    private Animator _anim;
+    private SpriteRenderer _renderer;
     public GameObject damagePopup;
     private TextMesh _popupTM;
     private bool _isMine;
+    private Animator _anim;
 
     void Awake()
     {
@@ -28,7 +29,7 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Start()    
     {
         _anim = GetComponent<Animator>();
         _popupTM = damagePopup.GetComponent<TextMesh>();
@@ -40,8 +41,19 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
         {
             _currHP = maxHP;
             HealthBar.Instance.SetMaxHealth(_currHP);
-            GameManager.instance.DeathGUIClose();
         }
+    }
+
+    [PunRPC]
+    public void RPC_Die()
+    {
+        Instantiate(hurtPS, transform.position, transform.rotation);
+    }
+
+    [PunRPC]
+    public void RPC_DamagePopup()
+    {
+        Instantiate(damagePopup, transform.position, Quaternion.Euler(0, 0, UnityEngine.Random.Range(-16, 16)));
     }
 
     public void TakeDamage(int damage, int damagerID)
@@ -49,9 +61,11 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
         if (_isMine)
         {
             _currHP -= damage;
-            photonView.RPC("RPC_DamagePopup", RpcTarget.All, damage);
+            _popupTM.text = damage.ToString();
+            photonView.RPC("RPC_DamagePopup", RpcTarget.All);
+            _anim.SetTrigger("Hurt");
             HealthBar.Instance.SetHealth(_currHP);
-            StartCoroutine(HurtVisuals());
+            CameraShake.Instance.Shake(2f, .2f);
             if (_currHP <= 0)
             {
                 Player damager = null;
@@ -62,25 +76,15 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
                         damager = player;
                     }
                 }
-                photonView.RPC("RPC_Die", RpcTarget.All, damager);
+                Die(damager);
                 return;
             }
         }
     }
 
-    [PunRPC]
-    void RPC_DamagePopup(int damage)
+    private void Die(Player killer)
     {
-        _popupTM.text = damage.ToString();
-        Instantiate(damagePopup, transform.position, Quaternion.Euler(0, 0, UnityEngine.Random.Range(-16, 16)));
-    }
-
-    [PunRPC]
-    void RPC_Die(Player killer)
-    {
-        Instantiate(hurtPS, transform.position, transform.rotation);
         AudioManager.instance.Play("death");
-
         // Make killer's kills equal to stored hashtable variable, increment, set
         int totalKills = (int)killer.CustomProperties["Kills"];
         totalKills++;
@@ -92,22 +96,7 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
         totalDeaths++;
         ExitGames.Client.Photon.Hashtable setPlayerDeaths = new ExitGames.Client.Photon.Hashtable() { { "Deaths", totalDeaths } };
         photonView.Owner.SetCustomProperties(setPlayerDeaths);
-
+        photonView.RPC("RPC_Die", RpcTarget.All);
         GameManager.instance.PlayerDied(gameObject);
-
-        if(_isMine)
-        {
-            GameManager.instance.DeathGUIOpen();
-        }
-
-        gameObject.SetActive(false);
-    }
-
-    private IEnumerator HurtVisuals()
-    {
-        _anim.SetTrigger("Hurt");
-        CameraShake.Instance.Shake(2f, .2f);
-        yield return new WaitForSeconds(0.2f);
-        _anim.SetTrigger("Normal");
     }
 }

@@ -31,7 +31,7 @@ public class Shoot : MonoBehaviourPunCallbacks
     {
         _anim = GetComponent<Animator>();
         _barrel = transform.Find("Barrel");
-        Sync();
+        _anim.SetFloat("animSpeed", 0.5f / weapon.fireRate);
     }
     void Update()
     {
@@ -78,15 +78,10 @@ public class Shoot : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    private void RPC_SendBullet(int senderNumber)
+    public void RPC_SendBullet(int senderNumber)
     {
         AudioManager.instance.Play("gunshot");
         Instantiate(bulletPrefab, _barrel.position, _barrel.rotation);
         bulletPrefab.GetComponent<Bullet>()._creator = senderNumber;
-    }
-    public void Sync()
-    {
-        _anim.SetFloat("animSpeed", 0.5f / weapon.fireRate);
-        // transform.localScale = new Vector3(weapon.width, weapon.height, 1);
     }
 }
