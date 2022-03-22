@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviourPun
             BulletHit();
         }
 
-        else if (collision.CompareTag("Player") && collision.gameObject.GetPhotonView().Owner.ActorNumber != _creator)
+        else if (collision.gameObject.GetPhotonView().Owner.ActorNumber != _creator)
         {
             collision.GetComponent<PlayerHealth>().TakeDamage(18, _creator);
             AudioManager.instance.Play("hit");
