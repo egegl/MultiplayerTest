@@ -7618,10 +7618,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 785103337619753838, guid: e1ecec9c40f13d348861bbf3df41ca49, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -114
-      objectReference: {fileID: 0}
     - target: {fileID: 785103337619753839, guid: e1ecec9c40f13d348861bbf3df41ca49, type: 3}
       propertyPath: m_Name
       value: HealthPanel
