@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviourPun
     {
         _rb = GetComponent<Rigidbody2D>();
         // MOVING THE BULLET'S RIGIDBODY2D FORWARD ON START
-        _rb.velocity = transform.right * 36;
+        _rb.velocity = transform.right * 25;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,19 +27,23 @@ public class Bullet : MonoBehaviourPun
         if (!collision.CompareTag("Player"))
         {
             BulletHit();
+            return;
         }
-
-        else if (collision.gameObject.GetPhotonView().Owner.ActorNumber != _creator)
-        {
-            collision.GetComponent<PlayerHealth>().TakeDamage(18, _creator);
-            AudioManager.instance.Play("hit");
-            BulletHit();
-        }
+        else if (collision.gameObject.GetPhotonView().Owner.ActorNumber == _creator) return;
+        
+        PlayerHit(collision.gameObject);
     }
 
     private void BulletHit()
     {
         Instantiate(impactPS, transform.position, transform.rotation);
         Destroy(gameObject);
+    }
+
+    private void PlayerHit(GameObject collision)
+    {
+        collision.GetComponent<PlayerHealth>().TakeDamage(18, _creator);
+        AudioManager.instance.Play("hit");
+        BulletHit();
     }
 }
