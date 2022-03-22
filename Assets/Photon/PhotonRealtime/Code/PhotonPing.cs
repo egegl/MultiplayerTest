@@ -34,8 +34,8 @@ namespace Photon.Realtime
 
     #if UNITY_WEBGL
     // import WWW class
-    using UnityEngine;
-    #endif
+    using UnityEngine.Networking;
+#endif
 
     /// <summary>
     /// Abstract implementation of PhotonPing, ase for pinging servers to find the "Best Region".
@@ -79,11 +79,10 @@ namespace Photon.Realtime
         }
     }
 
-
-    #if !NETFX_CORE && !NO_SOCKET
-    /// <summary>Uses C# Socket class from System.Net.Sockets (as Unity usually does).</summary>
-    /// <remarks>Incompatible with Windows 8 Store/Phone API.</remarks>
-    public class PingMono : PhotonPing
+#if !NETFX_CORE && !NO_SOCKET
+/// <summary>Uses C# Socket class from System.Net.Sockets (as Unity usually does).</summary>
+/// <remarks>Incompatible with Windows 8 Store/Phone API.</remarks>
+public class PingMono : PhotonPing
     {
         private Socket sock;
 
@@ -449,14 +448,14 @@ namespace Photon.Realtime
     #if UNITY_WEBGL
     public class PingHttp : PhotonPing
     {
-        private WWW webRequest;
+        private UnityWebRequest webRequest;
 
         public override bool StartPing(string address)
         {
             base.Init();
 
             address = "https://" + address + "/photon/m/?ping&r=" + UnityEngine.Random.Range(0, 10000);
-            this.webRequest = new WWW(address);
+            this.webRequest = new UnityWebRequest(address);
             return true;
         }
 
