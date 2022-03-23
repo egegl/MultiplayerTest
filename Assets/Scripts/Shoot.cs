@@ -8,9 +8,12 @@ using UnityEngine.EventSystems;
 
 public class Shoot : MonoBehaviourPunCallbacks
 {
-    public Weapon weapon;
-    public GameObject bulletPrefab;
-    private Transform _barrel;
+    public Transform firePoint;
+    public ParticleSystem impactPS;
+    public LineRenderer lineRenderer;
+    public int damage;
+    public float fireRate;
+
     private Animator _anim;
     private bool attackCD = true;
     private bool _isMine;
@@ -26,30 +29,21 @@ public class Shoot : MonoBehaviourPunCallbacks
             _isMine = false;
         }
     }
-    
+
     void Start()
     {
         _anim = GetComponent<Animator>();
-        _barrel = transform.Find("Barrel");
-        _anim.SetFloat("animSpeed", 0.5f / weapon.fireRate);
+        _anim.SetFloat("animSpeed", 0.5f / fireRate);
     }
     void Update()
     {
         if (_isMine)
         {
-            if (!weapon.fullAuto)
+            if (!attackCD) return;
+
+            if (Input.GetButton("Fire1"))
             {
-                if (Input.GetButtonDown("Fire1") && attackCD)
-                {
-                    AttackOnce();
-                }
-            }
-            else
-            {
-                if (Input.GetButton("Fire1") && attackCD)
-                {
-                    StartCoroutine(Spray());
-                }
+                StartCoroutine(Spray());
             }
         }
     }
@@ -58,30 +52,50 @@ public class Shoot : MonoBehaviourPunCallbacks
     IEnumerator AttackCooldown()
     {
         attackCD = false;
-        yield return new WaitForSeconds(weapon.fireRate);
+        yield return new WaitForSeconds(fireRate);
         attackCD = true;
     }
 
-    private void AttackOnce()
-    {
-        _anim.SetTrigger("Shoot");
-        photonView.RPC("RPC_SendBullet", RpcTarget.All, photonView.OwnerActorNr);
-        StartCoroutine(AttackCooldown());
-    }
     private IEnumerator Spray()
     {
         attackCD = false;
-        _anim.SetTrigger("Shoot");
-        photonView.RPC("RPC_SendBullet", RpcTarget.All, photonView.OwnerActorNr);
-        yield return new WaitForSeconds(weapon.fireRate);
+        photonView.RPC("RPC_SendRaycast", RpcTarget.All);
+        yield return new WaitForSeconds(fireRate);
         attackCD = true;
     }
 
     [PunRPC]
-    public void RPC_SendBullet(int senderNumber)
+    private void RPC_SendRaycast()
     {
+        _anim.SetTrigger("Shoot");
+        RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
         AudioManager.instance.Play("gunshot");
-        Instantiate(bulletPrefab, _barrel.position, _barrel.rotation);
-        bulletPrefab.GetComponent<Bullet>()._creator = senderNumber;
+
+        if (hitInfo)
+        {
+            PlayerHealth player = hitInfo.transform.GetComponent<PlayerHealth>();
+            if (player != null)
+            {
+                AudioManager.instance.Play("hit");
+                player.TakeDamage(damage, photonView.OwnerActorNr);
+            }
+            lineRenderer.SetPosition(0, firePoint.position);
+            lineRenderer.SetPosition(1, hitInfo.point);
+            StartCoroutine(SendLine());
+            Instantiate(impactPS, hitInfo.point, Quaternion.identity);
+        }
+        else
+        {
+            lineRenderer.SetPosition(0, firePoint.position);
+            lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 90);
+            StartCoroutine(SendLine());
+        }
+    }
+
+    private IEnumerator SendLine()
+    {
+        lineRenderer.enabled = true;
+        yield return new WaitForSeconds(0.02f);
+        lineRenderer.enabled = false;
     }
 }
