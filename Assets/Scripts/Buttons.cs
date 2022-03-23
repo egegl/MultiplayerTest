@@ -15,4 +15,10 @@ public class Buttons : MonoBehaviour
             AudioManager.instance.Play("fart2");
         }
     }
+
+    public void DisableParent()
+    {
+        Debug.Log("clicked");
+        transform.parent.parent.gameObject.SetActive(false);
+    }
 }
