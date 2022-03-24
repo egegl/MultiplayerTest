@@ -17,9 +17,9 @@ public class Countdown : MonoBehaviour
         float countdownTime = 3;
         while (countdownTime > 0)
         {
-            timerText.text = countdownTime.ToString("F2");
-            yield return new WaitForSeconds(0.01f);
-            countdownTime -= 0.01f;
+            timerText.text = countdownTime.ToString("F1");
+            yield return new WaitForSeconds(0.1f);
+            countdownTime -= 0.1f;
         }
         GameManager.instance.ReactivatePlayer();
     }
