@@ -14,7 +14,6 @@ public class RoomsList : MonoBehaviourPunCallbacks
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        UpdateCachedRoomList(roomList);
         foreach (RoomInfo room in cachedRoomList.Values)
         {
             if(room.RemovedFromList)
@@ -32,33 +31,6 @@ public class RoomsList : MonoBehaviourPunCallbacks
             {
                 roomListing.SetRoomInfo(room);
                 _listings.Add(roomListing);
-            }
-        }
-    }
-
-    private void UpdateCachedRoomList(List<RoomInfo> roomList)
-    {
-        foreach (RoomInfo info in roomList)
-        {
-            // Remove room from cached room list if it got closed, became invisible or was marked as removed
-            if (!info.IsOpen || !info.IsVisible || info.RemovedFromList)
-            {
-                if (cachedRoomList.ContainsKey(info.Name))
-                {
-                    cachedRoomList.Remove(info.Name);
-                }
-                continue;
-            }
-
-            // Update cached room info
-            if (cachedRoomList.ContainsKey(info.Name))
-            {
-                cachedRoomList[info.Name] = info;
-            }
-            // Add new room info to cache
-            else
-            {
-                cachedRoomList.Add(info.Name, info);
             }
         }
     }
