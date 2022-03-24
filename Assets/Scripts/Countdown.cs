@@ -21,5 +21,6 @@ public class Countdown : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             countdownTime -= 0.01f;
         }
+        GameManager.instance.ReactivatePlayer();
     }
 }
