@@ -8,13 +8,11 @@ public class RoomsList : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Transform _content;
     [SerializeField] private RoomListing _roomListing;
-
     private List<RoomListing> _listings = new List<RoomListing>();
-    private Dictionary<string, RoomInfo> cachedRoomList = new Dictionary<string, RoomInfo>();
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        foreach (RoomInfo room in cachedRoomList.Values)
+        foreach (RoomInfo room in roomList)
         {
             if(room.RemovedFromList)
             {
