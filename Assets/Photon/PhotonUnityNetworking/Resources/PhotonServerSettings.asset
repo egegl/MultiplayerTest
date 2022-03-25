@@ -49,6 +49,13 @@ MonoBehaviour:
   - DeathGUIClose
   - DeathGUIOpen
   - HurtVisuals
+  - RPC_SendRaycast
+  - RPC_ShowLine
+  - RPC_BulletImpact
+  - RPC_ShowLine2
+  - RPC_ShowLineInfinity
+  - RPC_TakeDamage
+  - SendRaycast
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

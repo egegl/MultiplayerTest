@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviourPun
     public Transform[] spawnPoints;
     public static GameManager instance;
 
+    private GameObject _deadPlayer;
+
     private int frameCount;
     private float time;
 
@@ -71,12 +73,10 @@ public class GameManager : MonoBehaviourPun
     {
         PhotonNetwork.Destroy(player);
         DeathGUIOpen();
-        StartCoroutine(ReactivatePlayer(player));
     }
 
-    private IEnumerator ReactivatePlayer(GameObject player)
+    public void ReactivatePlayer()
     {
-        yield return new WaitForSeconds(3.7f);
         SpawnPlayer();
         DeathGUIClose();
     }
