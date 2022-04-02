@@ -42,13 +42,89 @@ SpriteAtlas:
       enableTightPacking: 1
     secondaryTextureSettings: {}
     variantMultiplier: 1
-    packables: []
+    packables:
+    - {fileID: 2800000, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+    - {fileID: 2800000, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites: []
-  m_PackedSpriteNamesToIndex: []
+  m_PackedSprites:
+  - {fileID: -496063524386848222, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
+  - {fileID: -1870337072221294343, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
+  - {fileID: 7817264288880753218, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
+  - {fileID: -3587536347722282234, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
+  - {fileID: -1062406939519370910, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
+  - {fileID: -8014120555975802506, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
+  - {fileID: 5787071895586649069, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
+  - {fileID: -4095296195396843483, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
+  - {fileID: 3440183480480303124, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
+  - {fileID: 8188208067454600872, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
+  - {fileID: 1080108522356928719, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
+  - {fileID: 3556890401579828634, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
+  - {fileID: 399376768422423579, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
+  - {fileID: 4676457005718475513, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
+  - {fileID: 1360047267332169781, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
+  - {fileID: -5079438773781880840, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
+  - {fileID: 5806320428267473521, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
+  - {fileID: 1012861609702498065, guid: 3f8363552df41534b9ae5a3802e32979, type: 3}
+  - {fileID: -8331669278072808706, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  - {fileID: -1514271907263731757, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  - {fileID: -6653810409775711955, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  - {fileID: 1237595603238672397, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  - {fileID: 3394685988568560448, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  - {fileID: 7166193160137483405, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  - {fileID: 3755286617691466313, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  - {fileID: -8716815411354174705, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  - {fileID: -8953532155218082685, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  - {fileID: -8265659919110112319, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  - {fileID: -6547749115838941742, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  - {fileID: -4766902085538008532, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  - {fileID: 8646082718575309595, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  - {fileID: 2601966494295489038, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  - {fileID: -6066268369292359488, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  - {fileID: -4849691213452548970, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  - {fileID: -4236186426676942980, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  - {fileID: -4585844321677249013, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  - {fileID: -4960504244697372935, guid: 0713de474a4b5d64695131142b1d5ba3, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - nature-tm_12
+  - nature-tm_13
+  - nature-tm_10
+  - nature-tm_11
+  - nature-tm_16
+  - nature-tm_17
+  - nature-tm_14
+  - nature-tm_15
+  - nature-tm_9
+  - nature-tm_8
+  - nature-tm_7
+  - nature-tm_6
+  - nature-tm_5
+  - nature-tm_4
+  - nature-tm_3
+  - nature-tm_2
+  - nature-tm_1
+  - nature-tm_0
+  - inside TS 2_18
+  - inside TS 2_14
+  - inside TS 2_15
+  - inside TS 2_16
+  - inside TS 2_17
+  - inside TS 2_10
+  - inside TS 2_11
+  - inside TS 2_12
+  - inside TS 2_13
+  - inside TS 2_5
+  - inside TS 2_4
+  - inside TS 2_7
+  - inside TS 2_6
+  - inside TS 2_1
+  - inside TS 2_0
+  - inside TS 2_3
+  - inside TS 2_2
+  - inside TS 2_9
+  - inside TS 2_8
   m_RenderDataMap: {}
   m_Tag: Map Atlas
   m_IsVariant: 0
